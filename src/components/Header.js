@@ -4,15 +4,22 @@ import Notification from "../assests/bell.png";
 import Search from "../assests/search.png";
 import ProfileIcon from "../assests/profile.png";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/sidebarSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
+  };
   return (
-    <div className="flex justify-between items-center px-10 py-3">
+    <div className="flex justify-between items-center px-10 py-3 shadow-sm">
       <section className="flex items-center basis-1/4 ">
         <img
           src={Hamburger}
           alt="Hamburger-icon"
           className="w-6 cursor-pointer"
+          onClick={() => toggleMenuHandler()}
         />
         <img src={Logo} alt="logo" className="w-24 ml-10" />
       </section>
