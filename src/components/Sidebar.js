@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   return !isMenuOpen ? null : (
     <>
-      <div className="basis-1/5  shadow-lg px-9 py-3 gap-2 ease-in z-20 ">
+      <div className="basis-1/5  shadow-lg px-9 py-3 gap-2 ease-in z-20 h-min sticky left-0 top-16">
         <SidebarList sidebarLink="Home" HomeIcon={HomeIcon} />
         <SidebarList sidebarLink="Subscription" HomeIcon={SubscriptionIcon} />
         <SidebarList sidebarLink="History" HomeIcon={HistoryIcon} />

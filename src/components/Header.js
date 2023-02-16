@@ -13,7 +13,7 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="flex justify-between items-center px-10 py-3 shadow-sm sm:px-3">
+    <div className="flex justify-between items-center px-10 py-3 shadow-sm sm:px-3 sticky top-0 bg-white">
       <section className="flex items-center basis-1/4 sm:basis-1/6">
         <img
           src={Hamburger}
