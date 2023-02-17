@@ -12,7 +12,7 @@ const VideoCard = ({ info }) => {
   }, []);
   const thumbnailsApi = async () => {
     const data = await fetch(
-      "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=AIzaSyDtjRNuZzkhYl3bfr2cQxkMtwmuzW550PQ"
+      "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=AIzaSyAnIMsN9cupMrdgSQ8d-k3JTaWt878__9w"
     );
     const json = await data.json();
     // console.log(json.items[0].snippet.thumbnails.high);
