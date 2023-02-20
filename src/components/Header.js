@@ -4,6 +4,7 @@ import Notification from "../assests/bell.png";
 import Search from "../assests/search.png";
 import ProfileIcon from "../assests/profile.png";
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/sidebarSlice";
 
@@ -21,7 +22,9 @@ const Header = () => {
           className="w-6 cursor-pointer"
           onClick={() => toggleMenuHandler()}
         />
+        {/* <Link to="/"> */}
         <img src={Logo} alt="logo" className="w-24 ml-10 sm:hidden" />
+        {/* </Link> */}
       </section>
       <section className="basis-1/2 flex items-center sm:basis-4/5">
         <input

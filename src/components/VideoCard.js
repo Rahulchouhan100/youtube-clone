@@ -21,7 +21,7 @@ const VideoCard = ({ info }) => {
 
   return (
     <div>
-      <div className="p-2 w-80 ">
+      <div className="p-2 w-80 cursor-pointer">
         <img
           src={thumbnails?.medium?.url}
           alt="thumbnails"
