@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import football from "../assests/football.png";
 
 const VideoCard = ({ info }) => {
+  console.log(info);
   const [thumbnail, setThumbnail] = useState([]);
   //   console.log("info:::", info?.snippet);
   const { snippet, statistics } = info;
@@ -34,7 +35,7 @@ const VideoCard = ({ info }) => {
             className="w-8 h-8 border-2 rounded-full"
           />
           <div>
-            <h1 className="">{title}</h1>
+            <h1>{title}</h1>
             <p className="text-gray-500 text-md">{channelTitle}</p>
             <span className="text-gray-500 font-normal">
               {Math.round(statistics?.viewCount / 10000)}k views

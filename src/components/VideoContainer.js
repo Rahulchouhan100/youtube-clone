@@ -20,7 +20,14 @@ const VideoContainer = () => {
   return (
     <div className="flex flex-wrap gap-5 m-3">
       {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
+        <Link
+          to={"/watch?v=" + video.id}
+          state={{ title: video.snippet.title }}
+          // channelTitle={{ channelTitle: video.snippet.channelTitle }}
+          // likeCount={{ likeCount: video.statistics.likeCount }}
+          // viewsCount={{ channelTitle: video.statistics.viewsCount }}
+          // commentCount={{ channelTitle: video.statistics.commentCount }}
+        >
           <VideoCard key={video.id} info={video} />
         </Link>
       ))}
