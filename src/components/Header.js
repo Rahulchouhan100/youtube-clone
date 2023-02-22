@@ -3,12 +3,32 @@ import Logo from "../assests/unnamed.png";
 import Notification from "../assests/bell.png";
 import Search from "../assests/search.png";
 import ProfileIcon from "../assests/profile.png";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/sidebarSlice";
+import { YOUTUBE_SEARCH_API } from "../utils/constant";
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  // console.log(searchQuery);
+
+  useEffect(() => {
+    // make an api call after every key press
+    // but if the difference b/w 2 Api call is less than <200ms - Decline the api call
+
+    const timer = setTimeout(() => getSuggestion(), 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSuggestion = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json[1]);
+  };
+
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -31,6 +51,8 @@ const Header = () => {
           type="text"
           className="w-5/6  px-3 py-2 border-2 rounded-l-full outline-none sm:py-1"
           placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button className="border-1 bg-gray-200 w-20 h-11 rounded-r-full border-2 sm:w-10 sm:h-9">
           <img

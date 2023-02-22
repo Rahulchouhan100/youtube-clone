@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 // import football from "../assests/football.png";
 
 const VideoCard = ({ info }) => {
-  console.log(info);
   const [thumbnail, setThumbnail] = useState([]);
   //   console.log("info:::", info?.snippet);
   const { snippet, statistics } = info;
