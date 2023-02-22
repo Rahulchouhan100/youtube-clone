@@ -11,6 +11,8 @@ import { YOUTUBE_SEARCH_API } from "../utils/constant";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestion, setSuggestion] = useState([]);
+  const [showSuggestion, setShowSuggestion] = useState(false);
   // console.log(searchQuery);
 
   useEffect(() => {
@@ -26,7 +28,9 @@ const Header = () => {
   const getSuggestion = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    console.log(json[1]);
+    // console.log(json[1]);
+    // console.log("api call -- " + searchQuery);
+    setSuggestion(json[1]);
   };
 
   const dispatch = useDispatch();
@@ -46,13 +50,15 @@ const Header = () => {
         <img src={Logo} alt="logo" className="w-24 ml-10 sm:hidden" />
         {/* </Link> */}
       </section>
-      <section className="basis-1/2 flex items-center sm:basis-4/5">
+      <section className="basis-1/2 relative flex items-center sm:basis-4/5">
         <input
           type="text"
           className="w-5/6  px-3 py-2 border-2 rounded-l-full outline-none sm:py-1"
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onFocus={() => setShowSuggestion(true)}
+          onBlur={() => setShowSuggestion(false)}
         />
         <button className="border-1 bg-gray-200 w-20 h-11 rounded-r-full border-2 sm:w-10 sm:h-9">
           <img
@@ -61,7 +67,23 @@ const Header = () => {
             className="w-8 border-3 pl-2 ml-4 sm:w-4 sm:pl-0 sm:ml-2"
           />
         </button>
+        {showSuggestion && (
+          <div className="absolute top-12 bg-white w-[31rem] px-3 rounded-b-lg shadow-md">
+            <ul>
+              {suggestion.map((showSuggestion, index) => (
+                <li
+                  key={index}
+                  className="flex items-center gap-1 py-1 hover:bg-gray-200 px-2"
+                >
+                  <img src={Search} alt="search-icon" className="w-3 h-3" />
+                  <span>{showSuggestion}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
+
       <section className="flex basis-1/5 items-center justify-end">
         <img
           src={Notification}
