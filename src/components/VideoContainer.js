@@ -23,10 +23,6 @@ const VideoContainer = () => {
         <Link
           to={"/watch?v=" + video.id}
           state={{ title: video.snippet.title }}
-          // channelTitle={{ channelTitle: video.snippet.channelTitle }}
-          // likeCount={{ likeCount: video.statistics.likeCount }}
-          // viewsCount={{ channelTitle: video.statistics.viewsCount }}
-          // commentCount={{ channelTitle: video.statistics.commentCount }}
         >
           <VideoCard key={video.id} info={video} />
         </Link>
