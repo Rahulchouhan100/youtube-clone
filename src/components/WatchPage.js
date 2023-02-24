@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/sidebarSlice";
 import { useLocation } from "react-router-dom";
+import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const WatchPage = () => {
           allowFullScreen
         ></iframe>
         <h4 className="text-2xl font-medium w-5/6 mt-2">{title}</h4>
+        <CommentsContainer />
       </div>
 
       {/* chat app---------------  */}
