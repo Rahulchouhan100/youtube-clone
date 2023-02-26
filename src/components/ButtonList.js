@@ -1,21 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-const btnListName = [
-  "All",
-  "Music",
-  "Live",
-  "Chillstep",
-  "Tailwind",
-  "Javascript",
-  "gaming",
-  "Music",
-  "Live",
-  "Chillstep",
-  "Tailwind",
-  "Javascript",
-  "gaming",
-];
+const btnListName = ["All", "Music", "Live", "Chillstep"];
 
 const ButtonList = () => {
   return (
