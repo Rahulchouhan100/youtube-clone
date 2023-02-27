@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_VIDEOS_API } from "../utils/constant";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
@@ -33,8 +34,10 @@ const VideoContainer = () => {
   //   return () => window.removeEventListener("scroll", infiniteScroll);
   // });
 
-  if (!videos) return null;
-  return (
+  if (!videos) return;
+  return videos?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="flex flex-wrap gap-2 ml-4">
       {videos.map((video) => (
         <Link
