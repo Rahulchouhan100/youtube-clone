@@ -1,10 +1,11 @@
 import Hamburger from "../assests/hamburger.png";
+
 import Logo from "../assests/unnamed.png";
 import Notification from "../assests/bell.png";
 import Search from "../assests/search.png";
 import ProfileIcon from "../assests/profile.png";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/sidebarSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
@@ -17,6 +18,8 @@ const Header = () => {
 
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
   // console.log(searchQuery);
 
   useEffect(() => {
@@ -53,7 +56,7 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="flex justify-between items-center px-10 py-3 shadow-sm sm:px-3 sticky top-0 bg-white">
+    <div className="flex justify-between items-center px-10 py-3 shadow-sm sm:px-3 sticky top-0 bg-white md:px-3">
       <section className="flex items-center basis-1/4 sm:basis-1/6">
         <img
           src={Hamburger}
@@ -62,37 +65,42 @@ const Header = () => {
           onClick={() => toggleMenuHandler()}
         />
         {/* <Link to="/"> */}
-        <img src={Logo} alt="logo" className="w-24 ml-10 sm:hidden" />
+        <img src={Logo} alt="logo" className="w-24 ml-10 sm:hidden md:hidden" />
         {/* </Link> */}
       </section>
-      <section className="basis-1/2 relative flex items-center sm:basis-4/5">
+      <section className="basis-1/2 relative flex items-center sm:basis-4/5 md:basis4/5">
         <input
           type="text"
-          className="w-5/6  px-3 py-2 border-2 rounded-l-full outline-none sm:py-1"
+          className="w-5/6  px-3 py-2 border-2 rounded-l-full outline-none sm:py-1 md:py-1"
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setShowSuggestion(true)}
           onBlur={() => setShowSuggestion(false)}
         />
-        <button className="border-1 bg-gray-200 w-20 h-11 rounded-r-full border-2 sm:w-10 sm:h-9">
+        <button className="border-1 bg-gray-200 w-20 h-11 rounded-r-full border-2 sm:w-10 sm:h-9 md:w-10 md:h-9">
           <img
             src={Search}
             alt="search-icon"
-            className="w-8 border-3 pl-2 ml-4 sm:w-4 sm:pl-0 sm:ml-2"
+            className="w-8 border-3 pl-2 ml-4 sm:w-4 sm:pl-0 sm:ml-2 md:w-5 md:pl-0 md:ml-2"
           />
         </button>
         {showSuggestion && (
           <div className="absolute top-12 bg-white w-[31rem] px-3 rounded-b-lg shadow-md">
             <ul>
               {suggestion.map((showSuggestion, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-1 py-1 hover:bg-gray-200 px-2"
-                >
-                  <img src={Search} alt="search-icon" className="w-3 h-3" />
-                  <span>{showSuggestion}</span>
-                </li>
+                <BrowserRouter>
+                  <Link to={"/search/" + showSuggestion}>
+                    <li
+                      key={index}
+                      className="flex items-center gap-1 py-1 hover:bg-gray-200 px-2"
+                      // onClick={() => navigate("search/" + showSuggestion)}
+                    >
+                      <img src={Search} alt="search-icon" className="w-3 h-3" />
+                      <span>{showSuggestion}</span>
+                    </li>
+                  </Link>
+                </BrowserRouter>
               ))}
             </ul>
           </div>
@@ -103,13 +111,13 @@ const Header = () => {
         <img
           src={Notification}
           alt="notification-icon"
-          className="w-7 sm:hidden"
+          className="w-7 sm:hidden md:hidden"
         />
         <div>
           <img
             src={ProfileIcon}
             alt="profile-icon"
-            className="w-9 rounded-full ml-8 sm:ml-2 sm:w-8"
+            className="w-9 rounded-full ml-8 sm:ml-2 sm:w-8 md:ml-2"
           />
         </div>
       </section>

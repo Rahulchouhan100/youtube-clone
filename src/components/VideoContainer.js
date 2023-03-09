@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
+  console.log(videos);
   // const [page, setPage] = useState(1);
 
   const getYoutubeVideos = async () => {
@@ -45,6 +46,9 @@ const VideoContainer = () => {
           state={{
             desc: video?.snippet?.description,
             state: video?.snippet?.title,
+            channelTitle: video?.snippet?.channelTitle,
+            likeCount: video?.statistics?.likeCount,
+            icon: video?.thumbnails?.high.url,
           }}
         >
           <VideoCard key={video?.id} info={video} />
